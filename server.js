@@ -12,7 +12,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('json')); // Añadido para manejar JSON
-app.use(express.static('public'));
+app.use(express.static('public')); // Servir archivos estáticos desde la carpeta 'public'
 
 // Ruta principal (muestra el formulario de inicio de sesión)
 app.get('/', (req, res) => {
@@ -21,14 +21,13 @@ app.get('/', (req, res) => {
 
 // Ruta de autenticación (SignIn)
 app.get('/SignIn', (req, res) => {
-    const email = req.query.email.trim(); 
-    const password = req.query.password.trim();
+    const email = req.query.email?.trim(); // Obtener y trimar parámetros desde query strings
+    const password = req.query.password?.trim();
     console.log("Email recibido:", email);
     console.log("Password recibido:", password);
-    console.log("Agentes:", agentes.results); // Imprime el array completo de agentes
     const agente = agentes.results.find(a => a.email === email && a.password === password);
 
-    if (!agente) {
+    if (agente) {
         const token = jwt.sign({ email: agente.email }, secretKey, { expiresIn: '2m' }); // Token válido por 2 minutos
 
         res.send(`
@@ -47,7 +46,6 @@ app.get('/SignIn', (req, res) => {
     } else {
         console.log("No se encontró ningún agente con esas credenciales.");
         res.status(401).send('Credenciales incorrectas');
-        return;
     }
 });
 
@@ -56,14 +54,14 @@ app.get('/restricted', (req, res) => {
     const token = req.headers.authorization?.split(' ')[1]; // Obtener token del encabezado
 
     if (!token) {
-        return res.status(401).send('No autorizado');
+        return res.status(401).send('<h1>No autorizado</h1>');
     }
 
     try {
         const decoded = jwt.verify(token, secretKey); // Usar la clave secreta correcta
         res.send(`<h1>Bienvenido, ${decoded.email}!</h1>`);
     } catch (err) {
-        res.status(403).send('Token inválido o expirado');
+        res.status(403).send('<h2>Token inválido o expirado</h2>');
     }
 });
 

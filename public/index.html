@@ -47,38 +47,14 @@
 
   <script>
     document.getElementById('signin-form').addEventListener('submit', (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim(); // Trim input values
+      const password = document.getElementById('password').value.trim(); // Trim input values
 
-        // Redireccionamiento con query string
-        window.location.href = `/SignIn?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`; 
+      // Redireccionamiento con query string
+      window.location.href = `/SignIn?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`; 
     });
-    // document.getElementById('signin-form').addEventListener('submit', async (e) => {
-    //   e.preventDefault();
-
-    //   const email = document.getElementById('email').value;
-    //   const password = document.getElementById('password').value;
-
-    //   const response = await fetch('/SignIn', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ email, password })
-    //   });
-
-    //   if (response.ok) {
-    //     const html = await response.text();
-    //     document.open();
-    //     document.write(html);
-    //     document.close();
-    //   } else {
-    //     alert('Credenciales incorrectas');
-    //   }
-    // });
   </script>
 </body>
 </html>
-

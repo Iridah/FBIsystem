@@ -11,4 +11,4 @@ exports.results = [
     email: 'how@fbi.com',
     password: 'exactly',
   },
-]
+];
