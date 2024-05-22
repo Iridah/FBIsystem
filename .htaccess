@@ -1,0 +1,5 @@
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+Header set X-XSS-Protection "1; mode=block"

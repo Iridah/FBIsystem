@@ -1,0 +1,21 @@
+{
+  "name": "desafio2-fbisystem",
+  "version": "1.0.0",
+  "description": "Desafio 2, modulo 8, bootcamp Javascript de DesafioLatam",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Alejandro Silva Quiñones",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "bootstrap": "^5.3.3",
+    "chalk": "4.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.0"
+  }
+}
